@@ -1,0 +1,17 @@
+# Riot's icons are downloaded at first run, not stored in the repo
+spell_icons/
+
+# local settings of whoever runs the program
+lol_timer_settings.json
+
+# build output
+build/
+dist/
+*.exe
+
+# python
+__pycache__/
+*.pyc
+
+# old backups
+*backup*.py

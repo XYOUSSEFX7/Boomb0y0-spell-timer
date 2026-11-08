@@ -11,20 +11,29 @@ Boomb0y0 spell timer  (نسخة PyQt6 - أوفرلاي شفاف حقيقي)
 - Ctrl + عجلة الماوس بيكبّر ويصغّر برضو
 - اسحب النافذة من اسم الخط أو من العنوان
 - أول تشغيل محتاج نت عشان ينزّل الأيقونات (مرة واحدة)
+<<<<<<< HEAD
 - وانت في ماتش: البرنامج بيقرا بيانات الماتش من الـ Live Client Data API
   (API رسمي من Riot، محلي، مش محتاج مفتاح) ويملأ صفوف الخصوم لوحده:
   التشامبيون + الدور + السبلات بتاعته. لو مفيش ماتش بيفضل الوضع اليدوي.
+=======
+>>>>>>> a21bc005b57982a9a50fbf2030225ba676a0dba5
 - محتاج:  pip install PyQt6
 """
 import ctypes
 import json
 import os
+<<<<<<< HEAD
 import ssl
 import subprocess
 import sys
 import threading
 import time
 import urllib.error
+=======
+import subprocess
+import sys
+import time
+>>>>>>> a21bc005b57982a9a50fbf2030225ba676a0dba5
 import urllib.request
 from functools import partial
 
@@ -34,8 +43,12 @@ except ImportError:
     winsound = None
 
 from PyQt6.QtCore import (
+<<<<<<< HEAD
     QAbstractNativeEventFilter, QObject, QPoint, QPointF, QRectF, QSize, Qt,
     QTimer, pyqtSignal,
+=======
+    QAbstractNativeEventFilter, QPoint, QPointF, QRectF, QSize, Qt, QTimer,
+>>>>>>> a21bc005b57982a9a50fbf2030225ba676a0dba5
 )
 from PyQt6.QtGui import (
     QColor, QFont, QGuiApplication, QIcon, QKeySequence, QPainter, QPainterPath,
@@ -47,7 +60,10 @@ from PyQt6.QtWidgets import (
 )
 
 APP_NAME = "Boomb0y0 spell timer"
+<<<<<<< HEAD
 APP_VERSION = "1.0.3"       # ← غيّر الرقم هنا بس عند كل إصدار
+=======
+>>>>>>> a21bc005b57982a9a50fbf2030225ba676a0dba5
 SHOW_NAME_LABEL = True      # False لو عايز تشيل الاسم اللي فوق الأيقونات
 
 # الكول داون الأساسي بالثواني (ممكن يتغير مع الباتشات، عدّله هنا)
@@ -93,9 +109,12 @@ ROLES = [
 # قيم الـ Ability Haste اللي الزرار بيلف عليها
 HASTE_STEPS = [0, 12, 18, 30]
 
+<<<<<<< HEAD
 AH_TIP = ("Ability Haste بتاع العدو: 0 / 12 (Ionian Boots) / "
           "18 (Cosmic Insight) / 30 (الاتنين)")
 
+=======
+>>>>>>> a21bc005b57982a9a50fbf2030225ba676a0dba5
 GREEN = "#2e7d32"
 RED = "#c62828"
 IDLE_BORDER = "#666666"
@@ -324,6 +343,7 @@ def make_gear_icon():
     return QIcon(pm)
 
 
+<<<<<<< HEAD
 # ------------------------------------------------- بيانات الماتش الحالي (Riot Live Client Data API)
 # الـ API الرسمي من Riot: بيشتغل محلي وانت في ماتش، مش محتاج مفتاح ولا نت.
 # بياخد قايمة اللاعبين (تشامبيون + دور + سبلات) ويملأ صفوف الخصوم لوحده.
@@ -577,6 +597,12 @@ class UpdateChecker(QObject):
 HOTKEY_ID = 1
 WM_HOTKEY = 0x0312
 MOD_NOREPEAT = 0x4000   # من غير تكرار لو الزرار فضل مضغوط (ويندوز)
+=======
+# ---------------------------------------------------------------- اختصار الكيبورد
+HOTKEY_ID = 1
+WM_HOTKEY = 0x0312
+MOD_NOREPEAT = 0x4000
+>>>>>>> a21bc005b57982a9a50fbf2030225ba676a0dba5
 
 
 class _MSG(ctypes.Structure):
@@ -677,8 +703,11 @@ PANEL_CSS = """
 QFrame#panel { background: #1e1e1e; border: 1px solid #555; }
 QLabel { color: #dddddd; font: 12px 'Segoe UI'; }
 QLabel#hint { color: #f0a050; }
+<<<<<<< HEAD
 QLabel#version { color: #888888; font: 11px 'Segoe UI'; }
 QLabel#update { color: #7fd17f; font: 12px 'Segoe UI'; }
+=======
+>>>>>>> a21bc005b57982a9a50fbf2030225ba676a0dba5
 QPushButton {
     color: white; background: #333333; border: none; border-radius: 4px;
     padding: 5px 10px; font: 12px 'Segoe UI';
@@ -711,6 +740,7 @@ class SettingsPanel(QFrame):
         lay.addLayout(row)
 
         lay.addWidget(self.btn("Reset all timers", ov.reset_all))
+<<<<<<< HEAD
         self.auto = self.btn("", ov.toggle_auto_roster)
         lay.addWidget(self.auto)
         self.live = QLabel("")
@@ -718,6 +748,8 @@ class SettingsPanel(QFrame):
         self.live.setWordWrap(True)
         self.live.setMaximumWidth(250)
         lay.addWidget(self.live)
+=======
+>>>>>>> a21bc005b57982a9a50fbf2030225ba676a0dba5
         self.voice = self.btn("", ov.toggle_voice)
         lay.addWidget(self.voice)
         self.bg = self.btn("", ov.toggle_solid)
@@ -738,6 +770,7 @@ class SettingsPanel(QFrame):
         lay.addWidget(self.hint)
 
         lay.addWidget(self.btn("Hide now", ov.hide_overlay))
+<<<<<<< HEAD
         self.ver = QLabel("")
         self.ver.setObjectName("version")
         lay.addWidget(self.ver)
@@ -747,6 +780,8 @@ class SettingsPanel(QFrame):
         self.upd.setWordWrap(True)
         self.upd.setMaximumWidth(250)
         lay.addWidget(self.upd)
+=======
+>>>>>>> a21bc005b57982a9a50fbf2030225ba676a0dba5
         quit_btn = self.btn("Exit", ov.close)
         quit_btn.setObjectName("danger")
         lay.addWidget(quit_btn)
@@ -761,8 +796,11 @@ class SettingsPanel(QFrame):
 
     def refresh(self):
         ov = self.ov
+<<<<<<< HEAD
         self.auto.setText("Auto roster: ON" if ov.auto_roster else "Auto roster: OFF")
         self.live.setText(ov.live_msg)
+=======
+>>>>>>> a21bc005b57982a9a50fbf2030225ba676a0dba5
         self.voice.setText("Voice: ON" if ov.voice_on else "Voice: OFF")
         self.bg.setIcon(make_eye_icon(slashed=ov.solid))
         self.bg.setIconSize(QSize(18, 18))
@@ -780,6 +818,7 @@ class SettingsPanel(QFrame):
             hint = ""
         self.hint.setText(hint)
         self.hint.setVisible(bool(hint))
+<<<<<<< HEAD
         self.ver.setText("v{}".format(APP_VERSION))
         if ov.update_version:
             self.upd.setText(
@@ -790,16 +829,25 @@ class SettingsPanel(QFrame):
             self.upd.setVisible(True)
         else:
             self.upd.setVisible(False)
+=======
+>>>>>>> a21bc005b57982a9a50fbf2030225ba676a0dba5
         self.adjustSize()
 
 
 # ---------------------------------------------------------------- زرار السبيل
 class SpellSlot(QWidget):
+<<<<<<< HEAD
     def __init__(self, overlay, key, say, spell):
         super().__init__()
         self.overlay = overlay
         self.key = key        # مفتاح الصف (بيحدد قيم الـ Ability Haste بتاعته)
         self.role = say       # الاسم اللي بيتقال في الصوت
+=======
+    def __init__(self, overlay, role, spell):
+        super().__init__()
+        self.overlay = overlay
+        self.role = role
+>>>>>>> a21bc005b57982a9a50fbf2030225ba676a0dba5
         self.name = spell
         self.end = None
         self._secs = None
@@ -813,7 +861,11 @@ class SpellSlot(QWidget):
     # ---------- منطق التايمر
     def start(self):
         base = SPELLS[self.name]
+<<<<<<< HEAD
         haste = self.overlay.haste.get(self.key, 0)
+=======
+        haste = self.overlay.haste.get(self.role, 0)
+>>>>>>> a21bc005b57982a9a50fbf2030225ba676a0dba5
         self.end = time.time() + base * 100 / (100 + haste)
         self.overlay.wake()
 
@@ -929,6 +981,7 @@ class Overlay(QWidget):
         self.solid = bool(settings.get("solid", False))
         px = settings.get("icon_px", DEFAULT_PX)
         self.px = max(MIN_PX, min(MAX_PX, px)) if isinstance(px, int) else DEFAULT_PX
+<<<<<<< HEAD
         self.haste = {}
         # صفوف الخصوم: الوضع اليدوي (ROLES) أو اللي جاي من الـ Live Client API
         self.manual_rows = [
@@ -954,10 +1007,18 @@ class Overlay(QWidget):
         self.timer_font = QFont("Segoe UI")
 
         self.setWindowTitle("{} v{}".format(APP_NAME, APP_VERSION))
+=======
+        self.haste = {role: 0 for role, _ in ROLES}
+        self._drag = None
+        self.timer_font = QFont("Segoe UI")
+
+        self.setWindowTitle(APP_NAME)
+>>>>>>> a21bc005b57982a9a50fbf2030225ba676a0dba5
         # شفافية حقيقية لكل بكسل + ما ياخدش تركيز من اللعبة وقت الفتح
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground, True)
         self.setAttribute(Qt.WidgetAttribute.WA_ShowWithoutActivating, True)
 
+<<<<<<< HEAD
         # العنوان فوق + جدول الخصوم تحته (الجدول لوحده بنعيد بناءه لما الماتش يتغير)
         outer = QVBoxLayout(self)
         outer.setContentsMargins(8, 6, 8, 6)
@@ -982,6 +1043,12 @@ class Overlay(QWidget):
         self.grid.setHorizontalSpacing(4)
         self.grid.setVerticalSpacing(4)
         outer.addWidget(self.roster_box)
+=======
+        self.grid = QGridLayout(self)
+        self.grid.setContentsMargins(8, 6, 8, 6)
+        self.grid.setHorizontalSpacing(4)
+        self.grid.setVerticalSpacing(4)
+>>>>>>> a21bc005b57982a9a50fbf2030225ba676a0dba5
 
         # اختصار الإخفاء/الإظهار (انت اللي بتختاره من الإعدادات)
         vk = settings.get("hk_vk", 0)
@@ -993,9 +1060,38 @@ class Overlay(QWidget):
         self.hk_filter = None
         self.overlay_hidden = False
 
+<<<<<<< HEAD
         self.slots = []
         self.haste_btns = {}
         self.rebuild_roster(self.manual_rows)
+=======
+        # صف العنوان: الاسم + زرار الإعدادات (الترس) على اليمين
+        if SHOW_NAME_LABEL:
+            title = QLabel(APP_NAME)
+            title.setObjectName("chip")
+            title.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            self.grid.addWidget(title, 0, 0, 1, 4)
+        self.gear = self.make_btn("", self.toggle_panel, "Settings")
+        self.grid.addWidget(self.gear, 0, 4, alignment=Qt.AlignmentFlag.AlignRight)
+
+        self.slots = []
+        self.haste_btns = {}
+        for i, (role, spells) in enumerate(ROLES):
+            lbl = QLabel(role)
+            lbl.setObjectName("chip")
+            lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            lbl.setMinimumWidth(64)
+            self.grid.addWidget(lbl, i + 1, 0)
+            for j, sp in enumerate(spells):
+                slot = SpellSlot(self, role, sp)
+                self.grid.addWidget(slot, i + 1, 1 + j)
+                self.slots.append(slot)
+            hb = self.make_btn("AH 0", partial(self.cycle_haste, role),
+                               "Ability Haste بتاع العدو: 0 / 12 (Ionian Boots) / "
+                               "18 (Cosmic Insight) / 30 (الاتنين)")
+            self.haste_btns[role] = hb
+            self.grid.addWidget(hb, i + 1, 4)
+>>>>>>> a21bc005b57982a9a50fbf2030225ba676a0dba5
 
         # لوحة الإعدادات (بتفتح من الترس)
         self.panel = SettingsPanel(self)
@@ -1040,6 +1136,7 @@ class Overlay(QWidget):
         # بعد ما النافذة تظهر: رجّعها لشريط المهام والـ Alt+Tab
         QTimer.singleShot(150, self.setup_taskbar)
 
+<<<<<<< HEAD
         # قارئ بيانات الماتش (Live Client API) في الخلفية
         if self.auto_roster:
             self.start_poller()
@@ -1135,6 +1232,8 @@ class Overlay(QWidget):
             self.haste_btns[key] = hb
             self.grid.addWidget(hb, i, 1 + max_spells)
 
+=======
+>>>>>>> a21bc005b57982a9a50fbf2030225ba676a0dba5
     # ---------- بناء الواجهة
     def make_btn(self, text, callback, tip=None):
         b = QPushButton(text)
@@ -1232,12 +1331,21 @@ class Overlay(QWidget):
             s.cancel()
 
     # ---------- الأزرار
+<<<<<<< HEAD
     def cycle_haste(self, key):
         cur = self.haste.get(key, 0)
         nxt = HASTE_STEPS[(HASTE_STEPS.index(cur) + 1) % len(HASTE_STEPS)] \
             if cur in HASTE_STEPS else 0
         self.haste[key] = nxt
         self.haste_btns[key].setText(f"AH {nxt}")
+=======
+    def cycle_haste(self, role):
+        cur = self.haste.get(role, 0)
+        nxt = HASTE_STEPS[(HASTE_STEPS.index(cur) + 1) % len(HASTE_STEPS)] \
+            if cur in HASTE_STEPS else 0
+        self.haste[role] = nxt
+        self.haste_btns[role].setText(f"AH {nxt}")
+>>>>>>> a21bc005b57982a9a50fbf2030225ba676a0dba5
 
     def change_size(self, delta):
         new = max(MIN_PX, min(MAX_PX, self.px + delta))
@@ -1427,7 +1535,10 @@ class Overlay(QWidget):
             "voice": self.voice_on,
             "solid": self.solid,
             "on_top": self.on_top,
+<<<<<<< HEAD
             "auto_roster": self.auto_roster,
+=======
+>>>>>>> a21bc005b57982a9a50fbf2030225ba676a0dba5
             "hk_vk": self.hk_vk,
             "hk_mods": self.hk_mods,
             "hk_name": self.hk_name,
@@ -1437,7 +1548,10 @@ class Overlay(QWidget):
 
     def closeEvent(self, e):
         self.save_state()
+<<<<<<< HEAD
         self.stop_poller()
+=======
+>>>>>>> a21bc005b57982a9a50fbf2030225ba676a0dba5
         self.panel.hide()
         if self.tray is not None:
             self.tray.hide()
