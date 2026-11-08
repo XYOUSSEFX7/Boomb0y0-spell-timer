@@ -1,0 +1,7 @@
+{
+  "version": "1.0.1",
+  "url": "https://github.com/XYOUSSEFX7/Boomb0y0-spell-timer/releases/latest",
+  "sha256": "",
+  "notes": "Auto-fill the enemy roster from Riot's Live Client Data API + update notifier.",
+  "mandatory": false
+}
